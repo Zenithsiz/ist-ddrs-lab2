@@ -1,5 +1,5 @@
 ---
-default: [diagrams/1.svg, rule: ex1, rule: ex2]
+default: [output/1.svg, rule: ex1, rule: ex2]
 
 rules:
   # Typst
@@ -20,7 +20,7 @@ rules:
   diagram:
     alias:
       input: diagrams/^(file).dot
-      output: diagrams/^(file).svg
+      output: output/^(file).svg
     out: [$(output)]
     deps: [$(input)]
     exec:
@@ -33,10 +33,10 @@ rules:
   # Exercise 1
   ex1:
     out:
-      - images/1a (α=0.1, β=0.1).svg
-      - images/1b (α=0.9, β=0.1).svg
-      - images/1a (α=0.5, β=0.5).svg
-      - images/1a (α=0.9, β=0.9).svg
+      - output/1a (α=0.1, β=0.1).svg
+      - output/1b (α=0.9, β=0.1).svg
+      - output/1a (α=0.5, β=0.5).svg
+      - output/1a (α=0.9, β=0.9).svg
     deps:
       - code/1.R
     exec:
@@ -46,8 +46,8 @@ rules:
   # Exercise 2
   ex2:
     out:
-      - tables/2-occur.csv
-      - tables/2-prob.csv
+      - output/2-occur.csv
+      - output/2-prob.csv
     deps:
       - code/2.R
     exec:

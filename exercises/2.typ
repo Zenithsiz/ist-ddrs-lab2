@@ -6,8 +6,8 @@
 
 #indent_par[The following were our results:]
 
-#let occur_matrix = csv("/tables/2-occur.csv", delimiter: "\t")
-#let prob_matrix = csv("/tables/2-prob.csv", delimiter: "\t")
+#let occur_matrix = csv("/output/2-occur.csv", delimiter: "\t")
+#let prob_matrix = csv("/output/2-prob.csv", delimiter: "\t")
 #grid(
   columns: (1fr, 1fr),
   figure(

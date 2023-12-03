@@ -1,8 +1,6 @@
 # Auto-generated
 *.pdf
-images/*.svg
-diagrams/*.svg
-tables/*.csv
+output/
 
 # Exceptions
 !guide.pdf

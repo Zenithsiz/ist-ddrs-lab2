@@ -3,7 +3,7 @@
 #indent_par[The 2-DTMC process is capable of performing both what the Bernoulli process can, as well as another interesting behavior]
 
 #figure(
-  image("/diagrams/1.svg", width: 50%),
+  image("/output/1.svg", width: 50%),
   caption: [2-DTMC process]
 )
 
@@ -12,7 +12,7 @@
 #indent_par[When the α and β parameters are on opposite sides of the spectrum, the 2-DTMC process exhibits an interesting behavior:]
 
 #figure(
-  image("/images/1b (α=0.9, β=0.1).svg", width: 50%),
+  image("/output/1b (α=0.9, β=0.1).svg", width: 50%),
   caption: [2-DTMC and Bernoulli processes (α=0.9, β=0.1)]
 )
 
@@ -27,15 +27,15 @@
 #grid(
   columns: (1fr, 1fr, 1fr),
   figure(
-    image("/images/1a (α=0.1, β=0.1).svg", width: 80%),
+    image("/output/1a (α=0.1, β=0.1).svg", width: 80%),
     caption: [2-DTMC and Bernoulli processes (α=0.1, β=0.1)]
   ),
   figure(
-    image("/images/1a (α=0.5, β=0.5).svg", width: 80%),
+    image("/output/1a (α=0.5, β=0.5).svg", width: 80%),
     caption: [2-DTMC and Bernoulli processes (α=0.5, β=0.5)]
   ),
   figure(
-    image("/images/1a (α=0.9, β=0.9).svg", width: 80%),
+    image("/output/1a (α=0.9, β=0.9).svg", width: 80%),
     caption: [2-DTMC and Bernoulli processes (α=0.9, β=0.9)]
   )
 )

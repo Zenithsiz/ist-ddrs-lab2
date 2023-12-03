@@ -17,7 +17,7 @@ for (data_idx in 2:length(data)) {
 
 cat("Occurrences matrix:\n")
 print(occur_matrix)
-write.table(occur_matrix, "tables/2-occur.csv", sep = "\t", col.names = FALSE, row.names = FALSE)
+write.table(occur_matrix, "output/2-occur.csv", sep = "\t", col.names = FALSE, row.names = FALSE)
 
 prob_matrix <- apply(
   occur_matrix,
@@ -27,7 +27,7 @@ prob_matrix <- apply(prob_matrix, 2, function(cell) round(cell, 2))
 
 cat("Probability matrix:\n")
 print(prob_matrix)
-write.table(prob_matrix, "tables/2-prob.csv", sep = "\t", col.names = FALSE, row.names = FALSE)
+write.table(prob_matrix, "output/2-prob.csv", sep = "\t", col.names = FALSE, row.names = FALSE)
 
 alpha <- prob_matrix[1, 1]
 beta <- prob_matrix[2, 1]

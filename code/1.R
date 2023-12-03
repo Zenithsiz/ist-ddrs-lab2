@@ -53,7 +53,7 @@ simulate <- function(alpha, beta, output_file) {
 
 set.seed(0)
 pdf(NULL)
-simulate(0.1, 0.1, "images/1a (α=0.1, β=0.1).svg")
-simulate(0.5, 0.5, "images/1a (α=0.5, β=0.5).svg")
-simulate(0.9, 0.9, "images/1a (α=0.9, β=0.9).svg")
-simulate(0.9, 0.1, "images/1b (α=0.9, β=0.1).svg")
+simulate(0.1, 0.1, "output/1a (α=0.1, β=0.1).svg")
+simulate(0.5, 0.5, "output/1a (α=0.5, β=0.5).svg")
+simulate(0.9, 0.9, "output/1a (α=0.9, β=0.9).svg")
+simulate(0.9, 0.1, "output/1b (α=0.9, β=0.1).svg")

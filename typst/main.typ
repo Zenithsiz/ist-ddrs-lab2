@@ -1,4 +1,4 @@
-#import "util.typ" as util
+#import "/typst/util.typ" as util
 
 #set document(
   author: util.authors,
@@ -7,7 +7,7 @@
 )
 #set page(
   header: locate(loc => if loc.page() > 1 {
-    image("images/tecnico-logo.png", height: 30pt)
+    image("/images/tecnico-logo.png", height: 30pt)
   }),
   footer: locate(loc => if loc.page() > 1 {
     align(center, counter(page).display())

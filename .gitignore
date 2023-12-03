@@ -1,5 +1,5 @@
 # Auto-generated
-*.pdf
+typst/**/*.pdf
 output/
 
 # Exceptions

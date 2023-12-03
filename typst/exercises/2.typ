@@ -1,4 +1,4 @@
-#import "/util.typ" as util: indent_par
+#import "/typst/util.typ" as util: indent_par
 
 #indent_par[To estimate the transition probabilities, we traverse the data a pair at a time. This allows us to check the transition of each data point and store it in an occurrences matrix.]
 

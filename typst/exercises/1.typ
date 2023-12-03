@@ -1,4 +1,4 @@
-#import "/util.typ" as util: indent_par
+#import "/typst/util.typ" as util: indent_par
 
 #indent_par[The 2-DTMC process is capable of performing both what the Bernoulli process can, as well as another interesting behavior]
 

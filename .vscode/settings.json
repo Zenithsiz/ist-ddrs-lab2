@@ -6,6 +6,7 @@
     "ggplot",
     "ggsave",
     "probs",
+    "tecnico",
     "Tsvg",
     "typst"
   ]

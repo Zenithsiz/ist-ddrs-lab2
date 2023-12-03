@@ -1,5 +1,5 @@
 ---
-default: [diagrams/1.svg, rule: ex1]
+default: [diagrams/1.svg, rule: ex1, rule: ex2]
 
 rules:
   # Typst
@@ -42,3 +42,14 @@ rules:
     exec:
       - - Rscript
         - code/1.R
+
+  # Exercise 2
+  ex2:
+    out:
+      - tables/2-occur.csv
+      - tables/2-prob.csv
+    deps:
+      - code/2.R
+    exec:
+      - - Rscript
+        - code/2.R

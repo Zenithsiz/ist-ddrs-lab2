@@ -2,6 +2,7 @@
 *.pdf
 images/*.svg
 diagrams/*.svg
+tables/*.csv
 
 # Exceptions
 !guide.pdf

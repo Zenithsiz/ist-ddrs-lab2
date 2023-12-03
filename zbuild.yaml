@@ -1,5 +1,5 @@
 ---
-default: [output/1.svg, rule: ex1, rule: ex2]
+default: [output/1.svg, rule: ex1, rule: ex2, rule: ex3_a, rule: ex3_b]
 
 rules:
   # Typst
@@ -53,3 +53,25 @@ rules:
     exec:
       - - Rscript
         - code/2.R
+
+  # Exercise 3.a
+  ex3_a:
+    out:
+      - output/3a-aloha10.svg
+      - output/3a-aloha25.svg
+    deps:
+      - code/3a.R
+    exec:
+      - - Rscript
+        - code/3a.R
+
+  # Exercise 3.b
+  ex3_b:
+    out:
+      - output/3b-aloha10.svg
+      - output/3b-aloha25.svg
+    deps:
+      - code/3b.R
+    exec:
+      - - Rscript
+        - code/3b.R

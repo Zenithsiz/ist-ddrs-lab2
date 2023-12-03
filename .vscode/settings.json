@@ -5,9 +5,13 @@
     "DTMC",
     "ggplot",
     "ggsave",
+    "logseq",
+    "pracma",
     "probs",
     "tecnico",
     "Tsvg",
-    "typst"
+    "typst",
+    "xlab",
+    "ylab"
   ]
 }

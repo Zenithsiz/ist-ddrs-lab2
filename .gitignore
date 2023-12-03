@@ -1,6 +1,7 @@
 # Auto-generated
 typst/**/*.pdf
 output/
+Rplots.pdf
 
 # Exceptions
 !guide.pdf

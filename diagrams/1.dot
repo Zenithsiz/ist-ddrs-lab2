@@ -1,0 +1,16 @@
+digraph {
+    rankdir = "LR";
+    
+    State0 [label = "0";];
+    State1 [label = "1";];
+    
+    State0 -> State0 [label = "α";];
+    State0 -> State1 [label = "1-α";];
+    
+    # TODO: Better solution for this?
+    State0 -> State1 [style = "invis";];
+    State0 -> State1 [style = "invis";];
+    
+    State1 -> State0 [label = "β";];
+    State1 -> State1 [label = "1-β";];
+}

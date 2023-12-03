@@ -1,0 +1,44 @@
+---
+default: [diagrams/1.svg, rule: ex1]
+
+rules:
+  # Typst
+  typst:
+    alias:
+      input: ^(file).typ
+      output: ^(file).pdf
+    out: [$(output)]
+    deps: [$(input)]
+    exec:
+      - - typst
+        - compile
+        - --root=.
+        - $(input)
+        - $(output)
+
+  # Diagram
+  diagram:
+    alias:
+      input: diagrams/^(file).dot
+      output: diagrams/^(file).svg
+    out: [$(output)]
+    deps: [$(input)]
+    exec:
+      - - dot
+        - -Tsvg
+        - $(input)
+        - -o
+        - $(output)
+
+  # Exercise 1
+  ex1:
+    out:
+      - images/1a (α=0.1, β=0.1).svg
+      - images/1b (α=0.9, β=0.1).svg
+      - images/1a (α=0.5, β=0.5).svg
+      - images/1a (α=0.9, β=0.9).svg
+    deps:
+      - code/1.R
+    exec:
+      - - Rscript
+        - code/1.R

@@ -1,3 +1,7 @@
-# Ignore most `pdf`s
+# Auto-generated
 *.pdf
+images/*.svg
+diagrams/*.svg
+
+# Exceptions
 !guide.pdf

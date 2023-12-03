@@ -1,1 +1,3 @@
+# Ignore most `pdf`s
 *.pdf
+!guide.pdf

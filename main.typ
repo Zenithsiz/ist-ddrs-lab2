@@ -36,3 +36,8 @@
 #pagebreak()
 
 = Exercises
+
+== A. Discrete-time Markov chains
+
+=== 1. Exercise 1
+#include "exercises/1.typ"

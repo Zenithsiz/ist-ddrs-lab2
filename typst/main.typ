@@ -20,6 +20,13 @@
 #set par(
   justify: true,
 )
+#set math.equation(
+  numbering: "(1)",
+)
+#set math.mat(
+  delim: "[",
+
+)
 #show link: underline
 
 #include "cover.typ"

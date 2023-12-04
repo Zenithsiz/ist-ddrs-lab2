@@ -30,4 +30,6 @@ while (steps < 100) {
 
 cat(sprintf("Took %d steps\n", steps))
 cat(sprintf("Final matrix:\n"))
+step_matrix <- apply(step_matrix, 1, function(cell) round(cell, 4))
 print(step_matrix)
+write.table(step_matrix, "output/4-matrix.csv", sep = "\t", col.names = FALSE, row.names = FALSE)

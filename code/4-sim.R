@@ -25,8 +25,7 @@ for (round_idx in 1:rounds) {
   cur_state <- next_state
 }
 
-for (state in 1:3) {
-  state_count <- length(states[states == state])
-  state_prob <- state_count / rounds
-  cat(sprintf("State %d prob: %f\n", state, state_prob))
-}
+probs <- sapply(1:3, function(state) length(states[states == state]) / length(states))
+probs <- sapply(probs, function(x) round(x, 4))
+print(probs)
+write.table(probs, "output/4-sim.csv", sep = "\t", col.names = FALSE, row.names = FALSE)

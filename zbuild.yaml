@@ -1,5 +1,13 @@
 ---
-default: [output/1.svg, rule: ex1, rule: ex2, rule: ex3_a, rule: ex3_b]
+default:
+  - output/1.svg
+  - rule: ex1
+  - rule: ex2
+  - rule: ex3_a
+  - rule: ex3_b
+  - rule: ex4_solve
+  - rule: ex4_matrix
+  - rule: ex4_sim
 
 rules:
   # Typst
@@ -75,3 +83,33 @@ rules:
     exec:
       - - Rscript
         - code/3b.R
+
+  # Exercise 4 solve
+  ex4_solve:
+    out:
+      - output/4-solve.csv
+    deps:
+      - code/4-solve.R
+    exec:
+      - - Rscript
+        - code/4-solve.R
+
+  # Exercise 4 matrix
+  ex4_matrix:
+    out:
+      - output/4-matrix.csv
+    deps:
+      - code/4-matrix.R
+    exec:
+      - - Rscript
+        - code/4-matrix.R
+
+  # Exercise 4 sim
+  ex4_sim:
+    out:
+      - output/4-sim.csv
+    deps:
+      - code/4-sim.R
+    exec:
+      - - Rscript
+        - code/4-sim.R

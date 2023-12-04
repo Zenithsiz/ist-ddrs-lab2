@@ -45,12 +45,8 @@
 === 2. Exercise 2
 #include "exercises/2.typ"
 
-#pagebreak()
-
 === 3. Exercise 3
 #include "exercises/3.typ"
-
-#pagebreak()
 
 === 4. Exercise 4
 #include "exercises/4.typ"

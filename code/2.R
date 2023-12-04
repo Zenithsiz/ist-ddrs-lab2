@@ -23,12 +23,8 @@ prob_matrix <- apply(
   occur_matrix,
   1, function(row) row / sum(row)
 )
-prob_matrix <- apply(prob_matrix, 2, function(cell) round(cell, 2))
+prob_matrix <- apply(prob_matrix, 1, function(cell) round(cell, 4))
 
 cat("Probability matrix:\n")
 print(prob_matrix)
 write.table(prob_matrix, "output/2-prob.csv", sep = "\t", col.names = FALSE, row.names = FALSE)
-
-alpha <- prob_matrix[1, 1]
-beta <- prob_matrix[2, 1]
-cat(sprintf("α = %f, β = %f\n", alpha, beta))

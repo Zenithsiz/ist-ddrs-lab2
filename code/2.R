@@ -1,4 +1,4 @@
-data <- read.table("data/2dtmc_data.csv", sep = "\t")
+data <- read.csv("data/2dtmc_data.csv", sep = "\t")
 data <- data$x
 
 occur_matrix <- matrix(

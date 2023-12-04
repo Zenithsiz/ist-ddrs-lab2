@@ -1,0 +1,11 @@
+[workspace]
+
+resolver = "2"
+
+members = ["ex_3b"]
+
+[workspace.dependencies]
+
+rand = "0.8.5"
+rayon = "1.8.0"
+arrayvec = "0.7.4"

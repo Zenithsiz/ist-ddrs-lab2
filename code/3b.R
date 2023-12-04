@@ -7,7 +7,7 @@ status_backlogged <- "Backlogged"
 calc_throughput <- function(slots_len, prob_backlogged, prob_thinking) {
   slots <- as.list(rep(status_thinking, slots_len))
 
-  total_steps <- 50000
+  total_steps <- 10000000
   successes <- 0
   for (cur_step in 1:total_steps) {
     # Get all the slots that will be transmitting

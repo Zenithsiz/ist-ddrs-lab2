@@ -2,6 +2,7 @@
 typst/**/*.pdf
 output/
 Rplots.pdf
+code/target/
 
 # Exceptions
 !guide.pdf

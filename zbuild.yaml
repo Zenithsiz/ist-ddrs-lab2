@@ -77,15 +77,26 @@ rules:
         - code/3a.R
 
   # Exercise 3.b
+  ex3_b_data:
+    out:
+      - output/3b.csv
+    deps:
+      - code/ex_3b/src/main.rs
+    exec:
+      - - bash
+        - -c
+        - "cargo run --manifest-path=code/Cargo.toml --release > output/3b.csv"
+
   ex3_b:
     out:
       - output/3b-aloha10.svg
       - output/3b-aloha25.svg
     deps:
-      - code/3b.R
+      - output/3b.csv
+      - code/3b_rust.R
     exec:
       - - Rscript
-        - code/3b.R
+        - code/3b_rust.R
 
   # Exercise 4 solve
   ex4_solve:

@@ -59,3 +59,6 @@
 
 === 4. Exercise 4
 #include "exercises/4.typ"
+
+=== 5. Exercise 5
+#include "exercises/5.typ"

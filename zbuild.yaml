@@ -8,6 +8,9 @@ default:
   - rule: ex4_solve
   - rule: ex4_matrix
   - rule: ex4_sim
+  - rule: ex5_solve
+  - rule: ex5_sim1
+  - rule: ex5_sim2
 
 rules:
   # Typst
@@ -113,3 +116,33 @@ rules:
     exec:
       - - Rscript
         - code/4-sim.R
+
+  # Exercise 5 solve
+  ex5_solve:
+    out:
+      - output/5-solve.csv
+    deps:
+      - code/5-solve.R
+    exec:
+      - - Rscript
+        - code/5-solve.R
+
+  # Exercise 5 sim1
+  ex5_sim1:
+    out:
+      - output/5-sim1.csv
+    deps:
+      - code/5-sim1.R
+    exec:
+      - - Rscript
+        - code/5-sim1.R
+
+  # Exercise 5 sim2
+  ex5_sim2:
+    out:
+      - output/5-sim2.csv
+    deps:
+      - code/5-sim2.R
+    exec:
+      - - Rscript
+        - code/5-sim2.R

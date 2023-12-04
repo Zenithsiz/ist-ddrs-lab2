@@ -55,5 +55,7 @@
 === 3. Exercise 3
 #include "exercises/3.typ"
 
+== B. Discrete-time Markov chains and Continuous-time Markov chains
+
 === 4. Exercise 4
 #include "exercises/4.typ"

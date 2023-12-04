@@ -1,5 +1,12 @@
 #import "/typst/util.typ" as util: indent_par, code_figure
 
+#indent_par[Figure 11 represents the 3-DTMC we'll be using for this exercise.]
+
+#figure(
+  image("/images/4-diagram.png", width: 50%),
+	caption: "3-DTMC"
+)
+
 ==== (i) Solving the balance equations
 
 #indent_par[The following equations 1, 2, 3 and 4 are our balance equations:]
@@ -12,6 +19,8 @@ $ pi_0 + pi_1 + pi_2 = 1 $
 #indent_par[Calling $P$ the matrix $mat(p_00, p_01, p_02; p_10, p_11, p_12; p_20, p_21, p_22)$, the 3 first balance equations can be expressed as the following equation 5:]
 
 $ P^T dot mat(sum_(j) p_0j, 0, 0; 0, sum_(j) p_1j, 0; 0, 0, sum_(j) p_2j;) = 0 $
+
+#pagebreak()
 
 #indent_par[We can then model this in R using the following code 2:]
 
@@ -31,6 +40,8 @@ $ P^T dot mat(sum_(j) p_0j, 0, 0; 0, sum_(j) p_1j, 0; 0, 0, sum_(j) p_2j;) = 0 $
 	kind: table,
 	caption: "Limiting state probabilities"
 )
+
+#pagebreak()
 
 ==== (ii). Matrix multiplication
 
@@ -87,3 +98,5 @@ $ P^T dot mat(sum_(j) p_0j, 0, 0; 0, sum_(j) p_1j, 0; 0, 0, sum_(j) p_2j;) = 0 $
 )
 
 #indent_par[The results aren't exactly equal to the theoretical results, but this is expected, given it's a simulation. However, they are very close to them.]
+
+#pagebreak()

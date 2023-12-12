@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
+    "arrayvec",
     "byrow",
+    "chacha",
     "delim",
     "DTMC",
     "ggplot",
@@ -12,6 +14,7 @@
     "Tsvg",
     "typst",
     "xlab",
-    "ylab"
+    "ylab",
+    "ylim"
   ]
 }

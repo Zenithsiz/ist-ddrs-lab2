@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "accum",
     "arrayvec",
     "byrow",
     "chacha",
@@ -7,7 +8,9 @@
     "DTMC",
     "ggplot",
     "ggsave",
+    "Khinchine",
     "logseq",
+    "Pollaczek",
     "pracma",
     "probs",
     "tecnico",

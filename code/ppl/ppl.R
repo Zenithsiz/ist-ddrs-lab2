@@ -11,18 +11,23 @@ source("code/ppl/departures.R")
 source("code/ppl/pq.R")
 source("code/ppl/report.R")
 
-init() #Initialization of data structures
+ppl <- function() {
+  init() # Initialization of data structures
 
-#Main program
-while (Time < endTime) {
-  nextEvent=timing() #Next event
-  nextFlow=nextEvent[2] #Flow of next event
-  nextEventType=nextEvent[3] #Type of next event
-  if (nextEventType==1) { #If next event is an arrival
-    arrivals(nextFlow) #Call arrivals routine
-  } else { #If next event is a departure
-    departures() #Call departures routine
+  # Main program
+  while (Time < endTime) {
+    nextEvent <- timing() # Next event
+    nextFlow <- nextEvent[2] # Flow of next event
+    nextEventType <- nextEvent[3] # Type of next event
+    if (nextEventType == 1) { # If next event is an arrival
+      arrivals(nextFlow) # Call arrivals routine
+    } else { # If next event is a departure
+      departures() # Call departures routine
+    }
   }
-}
 
-report() #Computes and prints the performance metrics
+  list(
+    flow_avg_delays = sapply(seq_len(nrow(FlowStats)), function(i) FlowStats[i, 2] / FlowStats[i, 1]),
+    flow_throughput = sapply(seq_len(nrow(FlowStats)), function(i) FlowStats[i, 3] / Time)
+  )
+}

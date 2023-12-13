@@ -67,3 +67,6 @@
 
 === 6. Exercise 6
 #include "exercises/6.typ"
+
+=== 7. Exercise 7
+#include "exercises/7.typ"

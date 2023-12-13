@@ -12,6 +12,7 @@ default:
   - rule: ex5_sim1
   - rule: ex5_sim2
   - rule: ex6
+  - rule: ex7_a
 
 rules:
   # Typst
@@ -168,3 +169,13 @@ rules:
     exec:
       - - Rscript
         - code/6.R
+
+  # Exercise 7.a
+  ex7_a:
+    out:
+      - output/7a.csv
+    deps:
+      - code/7a.R
+    exec:
+      - - Rscript
+        - code/7a.R

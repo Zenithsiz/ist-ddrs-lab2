@@ -5,7 +5,7 @@ calc_avg_delay <- function(ArrivalRate, ServiceRate, StoppingCondition) {
   NumQueueCompleted <- 0
   ServerStatus <- 0
   NumInQueue <- 0
-  AcumDelay <- 0
+  AccumDelay <- 0
   QueueArrivalTime <- c()
   EventList <- c(rexp(1, ArrivalRate), Inf)
 
@@ -27,7 +27,7 @@ calc_avg_delay <- function(ArrivalRate, ServiceRate, StoppingCondition) {
         ServerStatus <- 0
         EventList[2] <- Inf
       } else {
-        AcumDelay <- AcumDelay + Time - QueueArrivalTime[1]
+        AccumDelay <- AccumDelay + Time - QueueArrivalTime[1]
         QueueArrivalTime <- QueueArrivalTime[-1]
         NumInQueue <- NumInQueue - 1
         NumQueueCompleted <- NumQueueCompleted + 1
@@ -36,7 +36,7 @@ calc_avg_delay <- function(ArrivalRate, ServiceRate, StoppingCondition) {
     }
   }
 
-  AcumDelay / NumQueueCompleted
+  AccumDelay / NumQueueCompleted
 }
 
 generate_graph <- function(rho, output_file) {

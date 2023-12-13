@@ -1,35 +1,46 @@
+source("code/7.R")
+source("code/ppl/ppl.R")
 
-for (arrival_rate1 in c(60, 80)) {
-	LinkCapacity <<- 100e3
-	packet_size = 800
-	Flows <<- list(
-		list(sourcetype = 2, arrivalrate = arrival_rate1, packetsize = packet_size, priority=1),
-		list(sourcetype = 2, arrivalrate = 40, packetsize = packet_size, priority=2)
-	)
-	endTime <<- 10000*(1/10)
+arrival_rates1 <- c(80)
 
-	λ1 = Flows[[1]]$arrivalrate
-	λ2 = Flows[[2]]$arrivalrate
-	μ = LinkCapacity / packet_size
-	p1 = λ1 / μ
-	p2 = λ2 / μ
-	p = p1 + p2
-	avg_wait_delay1 = (p / (2 * μ)) / (1 - p1) + 1 / μ
-	avg_wait_delay2 = (p / (2 * μ)) / ((1 - p1) * (1 - p1 - p2)) + 1 / μ
+set.seed(0)
+data <- lapply(arrival_rates1, function(arrival_rate1) {
+  cat(sprintf("Arrival rate (1) = %d\n", arrival_rate1))
 
-	throughput1 = Flows[[1]]$arrivalrate * packet_size
-	throughput2 = Flows[[2]]$arrivalrate * packet_size
+  packet_size <- 800
+  sim_res <- calc_data(2, c(arrival_rate1, 40), packet_size, c(1, 2))
 
-	cat(sprintf("λ1 = %.2f\n", λ1))
-	cat(sprintf("λ2 = %.2f\n", λ2))
-	cat(sprintf("μ = %.2f\n", μ))
-	cat(sprintf("p1 = %.2f\n", p1))
-	cat(sprintf("p2 = %.2f\n", p2))
-	cat(sprintf("W1 = %.2f\n", avg_wait_delay1))
-	cat(sprintf("W2 = %.2f\n", avg_wait_delay2))
-	cat(sprintf("Throughput (1) = %.2f\n", throughput1))
-	cat(sprintf("Throughput (2) = %.2f\n", throughput2))
+  # Then calculate theoretical results
+  λ1 <- Flows[[1]]$arrivalrate
+  λ2 <- Flows[[2]]$arrivalrate
+  μ <- LinkCapacity / packet_size
+  p1 <- λ1 / μ
+  p2 <- λ2 / μ
+  p <- p1 + p2
+  avg_wait_delay1 <- (p / (2 * μ)) / (1 - p1) + 1 / μ
+  avg_wait_delay2 <- (p / (2 * μ)) / ((1 - p1) * (1 - p1 - p2)) + 1 / μ
 
-	set.seed(1)
-	source("code/ppl/ppl.R")
-}
+  throughput1 <- Flows[[1]]$arrivalrate * packet_size
+  throughput2 <- Flows[[2]]$arrivalrate * packet_size
+
+  data.frame(
+    λ1 = λ1,
+    λ2 = λ2,
+    μ = μ,
+    calc_avg_wait_delay1 = signif(avg_wait_delay1, 4),
+    calc_avg_wait_delay2 = signif(avg_wait_delay2, 4),
+    calc_throughput1 = signif(throughput1, 4),
+    calc_throughput2 = signif(throughput2, 4),
+    sim_avg_wait_delay1_min = signif(sim_res$avg_wait_delay1$min, 4),
+    sim_avg_wait_delay1_max = signif(sim_res$avg_wait_delay1$max, 4),
+    sim_avg_wait_delay2_min = signif(sim_res$avg_wait_delay2$min, 4),
+    sim_avg_wait_delay2_max = signif(sim_res$avg_wait_delay2$max, 4),
+    sim_throughput1_min = signif(sim_res$throughput1$min, 4),
+    sim_throughput1_max = signif(sim_res$throughput1$max, 4),
+    sim_throughput2_min = signif(sim_res$throughput2$min, 4),
+    sim_throughput2_max = signif(sim_res$throughput2$max, 4)
+  )
+})
+data <- do.call(rbind, data)
+
+write.table(data, "output/7c.csv", sep = "\t", row.names = FALSE)

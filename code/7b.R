@@ -21,9 +21,9 @@ data <- lapply(arrival_rates1, function(arrival_rate1) {
   data.frame(
     λ = λ,
     μ = μ,
-    calc_avg_wait_delay = avg_wait_delay,
-    calc_throughput1 = throughput1,
-    calc_throughput2 = throughput2,
+    calc_avg_wait_delay = signif(avg_wait_delay, 4),
+    calc_throughput1 = signif(throughput1, 4),
+    calc_throughput2 = signif(throughput2, 4),
     sim_avg_wait_delay1_min = signif(sim_res$avg_wait_delay1$min, 4),
     sim_avg_wait_delay1_max = signif(sim_res$avg_wait_delay1$max, 4),
     sim_avg_wait_delay2_min = signif(sim_res$avg_wait_delay2$min, 4),

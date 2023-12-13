@@ -18,7 +18,15 @@ $ pi_0 + pi_1 + pi_2 = 1 $
 
 #indent_par[Calling $P$ the matrix $mat(p_00, p_01, p_02; p_10, p_11, p_12; p_20, p_21, p_22)$, the 3 first balance equations can be expressed as the following equation 5:]
 
-$ P^T dot mat(sum_(j) p_0j, 0, 0; 0, sum_(j) p_1j, 0; 0, 0, sum_(j) p_2j;) = 0 $
+$
+	P^T dot
+	mat(
+			sum_(j) p_(0j), 0, 0;
+			0, sum_(j) p_(1j), 0;
+			0, 0, sum_(j) p_(2j);
+	)
+	= 0
+$
 
 #pagebreak()
 

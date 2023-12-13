@@ -34,7 +34,7 @@ $
 #indent_par[We can then model this in R using the following code 2:]
 
 #code_figure(
-  text(size: 0.8em, raw(read("/code/4-solve.R"), lang: "R", block: true)),
+  text(size: 0.8em, raw(read("/code/5-solve.R"), lang: "R", block: true)),
   caption: "Code for solving the balance equations",
 )
 

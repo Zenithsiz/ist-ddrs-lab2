@@ -11,6 +11,7 @@ default:
   - rule: ex5_solve
   - rule: ex5_sim1
   - rule: ex5_sim2
+  - rule: ex6
 
 rules:
   # Typst
@@ -157,3 +158,13 @@ rules:
     exec:
       - - Rscript
         - code/5-sim2.R
+
+  # Exercise 6
+  ex6:
+    out:
+      - output/6.svg
+    deps:
+      - code/6.R
+    exec:
+      - - Rscript
+        - code/6.R

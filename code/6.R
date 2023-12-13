@@ -1,3 +1,4 @@
+library(scales)
 library(ggplot2)
 
 calc_avg_delay <- function(ArrivalRate, ServiceRate, StoppingCondition) {
@@ -39,27 +40,57 @@ calc_avg_delay <- function(ArrivalRate, ServiceRate, StoppingCondition) {
   AccumDelay / NumQueueCompleted
 }
 
-generate_graph <- function(rho, output_file) {
-  print(rho)
+generate_graph <- function(ρ_all, output_file) {
+  data <- lapply(ρ_all, function(ρ) {
+    cat(sprintf("ρ = %.2f\n", ρ))
 
-  StoppingConditions <- seq(1000, 2000, by = 500)
-  AvgAvgDelays <- sapply(StoppingConditions, function(StoppingCondition) {
-    sum(sapply(1:50, function(...) {
-      calc_avg_delay(rho, 1, StoppingCondition)
-    }))
+    stopping_conditions <- c(1000, 2000, 5000, 10000, 20000)
+    avg_delay_results <- lapply(stopping_conditions, function(stopping_condition) {
+      cat(sprintf("stopping condition = %.2f\n", stopping_condition))
+      avg_delays <- sapply(1:50, function(...) {
+        calc_avg_delay(ρ, 1, stopping_condition)
+      })
+
+      avg_delays_mean <- mean(avg_delays)
+      avg_delays_var <- var(avg_delays)
+
+      confidence <- 0.95
+      p <- 1 - (1 - confidence) / 2
+      t <- qt(p, length(avg_delays) - 1)
+      avg_delays_ci_min <- avg_delays_mean - t * sqrt(avg_delays_var / length(avg_delays))
+      avg_delays_ci_max <- avg_delays_mean + t * sqrt(avg_delays_var / length(avg_delays))
+
+      list(
+        mean = avg_delays_mean,
+        ci_min = avg_delays_ci_min,
+        ci_max = avg_delays_ci_max
+      )
+    })
+    avg_delay_means <- sapply(avg_delay_results, function(res) res$mean)
+    avg_delay_ci_mins <- sapply(avg_delay_results, function(res) res$ci_min)
+    avg_delay_ci_maxs <- sapply(avg_delay_results, function(res) res$ci_max)
+
+    data.frame(
+      ρ = sprintf("%.2f", ρ),
+      x = stopping_conditions,
+      mean = avg_delay_means,
+      ci_min = avg_delay_ci_mins,
+      ci_max = avg_delay_ci_maxs
+    )
   })
+  data <- do.call("rbind", data)
 
-  data <- data.frame(x = StoppingConditions, y = AvgAvgDelays)
-
-  plot <- ggplot(data) +
-    geom_line(aes(.data$x, .data$y)) +
+  plot <- ggplot(data, aes(.data$x, group = .data$ρ, color = .data$ρ)) +
+    geom_ribbon(aes(ymin = .data$ci_min, ymax = .data$ci_max), alpha = 0.2, fill = "grey50", linetype = 0) +
+    geom_line(aes(y = .data$mean)) +
     xlab("Stopping condition") +
-    ylab("Avg delay")
+    ylab("Avg delay") +
+    scale_x_continuous() +
+    scale_y_log10(labels = scales::comma)
 
   ggsave(plot, file = output_file, device = "svg")
 }
 
 set.seed(0)
 pdf(NULL)
-generate_graph(1, "output/6a.svg")
-generate_graph(2, "output/6b.svg")
+generate_graph(c(0.5, 1, 2), "output/6.svg")

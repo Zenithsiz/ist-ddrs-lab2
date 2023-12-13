@@ -62,3 +62,8 @@
 
 === 5. Exercise 5
 #include "exercises/5.typ"
+
+== C. Queueing systems
+
+=== 6. Exercise 6
+#include "exercises/6.typ"

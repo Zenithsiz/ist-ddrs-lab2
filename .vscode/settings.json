@@ -11,7 +11,9 @@
     "ggsave",
     "Khinchine",
     "kleinrock",
+    "linetype",
     "logseq",
+    "maxs",
     "packetsize",
     "pnet",
     "Pollaczek",
@@ -23,6 +25,8 @@
     "typst",
     "xlab",
     "ylab",
-    "ylim"
+    "ylim",
+    "ymax",
+    "ymin"
   ]
 }

@@ -2,6 +2,7 @@
   "cSpell.words": [
     "accum",
     "arrayvec",
+    "avgs",
     "byrow",
     "chacha",
     "delim",
@@ -11,6 +12,8 @@
     "Khinchine",
     "kleinrock",
     "logseq",
+    "packetsize",
+    "pnet",
     "Pollaczek",
     "pracma",
     "probs",

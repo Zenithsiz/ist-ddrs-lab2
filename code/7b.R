@@ -1,26 +1,39 @@
+source("code/7.R")
+source("code/ppl/ppl.R")
 
-for (arrival_rate1 in c(60, 80)) {
-	LinkCapacity <<- 100e3
-	packet_size = 800
-	Flows <<- list(
-		list(sourcetype = 2, arrivalrate = arrival_rate1, packetsize = packet_size, priority=1),
-		list(sourcetype = 2, arrivalrate = 40, packetsize = packet_size, priority=1)
-	)
-	endTime <<- 10000*(1/10)
+arrival_rates1 <- c(60, 80)
 
-	λ = Flows[[1]]$arrivalrate + Flows[[2]]$arrivalrate
-	μ = LinkCapacity / packet_size
-	avg_wait_delay = λ / ( 2 * μ * (μ - λ) ) + 1 / μ
+set.seed(0)
+data <- lapply(arrival_rates1, function(arrival_rate1) {
+  cat(sprintf("Arrival rate (1) = %d\n", arrival_rate1))
 
-	throughput1 = Flows[[1]]$arrivalrate * packet_size
-	throughput2 = Flows[[2]]$arrivalrate * packet_size
+  packet_size <- 800
+  sim_res <- calc_data(2, c(arrival_rate1, 40), packet_size, c(1, 1))
 
-	cat(sprintf("λ = %.2f\n", λ))
-	cat(sprintf("μ = %.2f\n", μ))
-	cat(sprintf("W = %.2f\n", avg_wait_delay))
-	cat(sprintf("Throughput (1) = %.2f\n", throughput1))
-	cat(sprintf("Throughput (2) = %.2f\n", throughput2))
+  # Then calculate theoretical results
+  λ <- Flows[[1]]$arrivalrate + Flows[[2]]$arrivalrate
+  μ <- LinkCapacity / packet_size
+  avg_wait_delay <- λ / (2 * μ * (μ - λ)) + 1 / μ
 
-	set.seed(1)
-	source("code/ppl/ppl.R")
-}
+  throughput1 <- Flows[[1]]$arrivalrate * packet_size
+  throughput2 <- Flows[[2]]$arrivalrate * packet_size
+
+  data.frame(
+    λ = λ,
+    μ = μ,
+    calc_avg_wait_delay = avg_wait_delay,
+    calc_throughput1 = throughput1,
+    calc_throughput2 = throughput2,
+    sim_avg_wait_delay1_min = signif(sim_res$avg_wait_delay1$min, 4),
+    sim_avg_wait_delay1_max = signif(sim_res$avg_wait_delay1$max, 4),
+    sim_avg_wait_delay2_min = signif(sim_res$avg_wait_delay2$min, 4),
+    sim_avg_wait_delay2_max = signif(sim_res$avg_wait_delay2$max, 4),
+    sim_throughput1_min = signif(sim_res$throughput1$min, 4),
+    sim_throughput1_max = signif(sim_res$throughput1$max, 4),
+    sim_throughput2_min = signif(sim_res$throughput2$min, 4),
+    sim_throughput2_max = signif(sim_res$throughput2$max, 4)
+  )
+})
+data <- do.call(rbind, data)
+
+write.table(data, "output/7b.csv", sep = "\t", row.names = FALSE)

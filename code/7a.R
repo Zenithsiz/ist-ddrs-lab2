@@ -1,3 +1,4 @@
+source("code/7.R")
 source("code/ppl/ppl.R")
 
 arrival_rates1 <- c(60, 80)
@@ -6,38 +7,8 @@ set.seed(0)
 data <- lapply(arrival_rates1, function(arrival_rate1) {
   cat(sprintf("Arrival rate (1) = %d\n", arrival_rate1))
 
-  # Perform simulation
-  LinkCapacity <<- 100e3
-  packet_size <- 800
-  Flows <<- list(
-    list(sourcetype = 1, arrivalrate = arrival_rate1, packetsize = packet_size, priority = 1),
-    list(sourcetype = 1, arrivalrate = 40, packetsize = packet_size, priority = 1)
-  )
-  endTime <<- 10000 * (1 / 10)
-  sim_res <- lapply(1:20, function(run_idx) {
-    cat(sprintf("Run #%d\n", run_idx))
-
-    res <- ppl()
-    data.frame(
-      avg_wait_delay1 = res$flow_avg_delays[1],
-      avg_wait_delay2 = res$flow_avg_delays[2],
-      throughput1 = res$flow_throughput[1],
-      throughput2 = res$flow_throughput[2]
-    )
-  })
-  sim_res <- do.call(rbind, sim_res)
-  sim_res <- lapply(sim_res, function(col) {
-    col_mean <- mean(col)
-    col_var <- var(col)
-
-    confidence <- 0.95
-    p <- 1 - (1 - confidence) / 2
-    t <- qt(p, length(col) - 1)
-    ci_min <- col_mean - t * sqrt(col_var / length(col))
-    ci_max <- col_mean + t * sqrt(col_var / length(col))
-
-    list(min = ci_min, max = ci_max)
-  })
+  packet_size = 800
+  sim_res <- calc_data(1, c(arrival_rate1, 40), packet_size, c(1, 1))
 
   # Then calculate theoretical results
   λ <- Flows[[1]]$arrivalrate + Flows[[2]]$arrivalrate

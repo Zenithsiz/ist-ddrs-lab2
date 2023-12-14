@@ -1,5 +1,3 @@
-set.seed(0)
-
 source("code/kleinrock.R")
 source("code/pnet/pnet.R")
 
@@ -7,19 +5,23 @@ k <- 1000
 
 link_capacity <- 64 * k
 packet_size <- 1000
-λ <- link_capacity / packet_size
-cat(sprintf("λ = %.2f\n", λ))
+μ <- link_capacity / packet_size
+cat(sprintf("μ = %.2f\n", μ))
 
+set.seed(0)
 𝜌_all <- c(0.05, 0.5, 0.95, 0.975)
 for (𝜌 in 𝜌_all) {
-  μ <- λ * 𝜌
+  λ <- μ * 𝜌
   cat(sprintf("𝜌 = %.3f\n", 𝜌))
-  cat(sprintf("μ = %.3f\n", μ))
+  cat(sprintf("λ = %.3f\n", λ))
 
   LinkCapacities <- c(link_capacity, link_capacity)
   Flows <- list(
-    list(rate = μ, packetsize = packet_size, route = c(1, 2))
+    list(rate = λ, packetsize = packet_size, route = c(1, 2))
   )
+
+  kleinrock <- approx_kleinrock(LinkCapacities, Flows, packet_size)
+  cat(sprintf("Kleinrock average: %.5f\n", kleinrock$total_wait))
 
   min_rate <- min(sapply(Flows, function(flow) flow$rate))
   endTime <- 10000 * (1 / min_rate)
@@ -37,7 +39,4 @@ for (𝜌 in 𝜌_all) {
   pnet_ci_min <- pnet_mean - t * sqrt(pnet_var / length(pnet_results))
   pnet_ci_max <- pnet_mean + t * sqrt(pnet_var / length(pnet_results))
   cat(sprintf("PNet average results: %.5f .. %.5f\n", pnet_ci_min, pnet_ci_max))
-
-  kleinrock <- approx_kleinrock(LinkCapacities, Flows, packet_size)
-  cat(sprintf("Kleinrock average: %.5f\n", kleinrock$total_wait))
 }

@@ -6,6 +6,8 @@
     "avgs",
     "byrow",
     "chacha",
+    "circnets",
+    "cnet",
     "colspanx",
     "delim",
     "DTMC",

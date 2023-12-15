@@ -80,3 +80,6 @@
 
 === 9. Exercise 9
 #include "exercises/9.typ"
+
+=== 10. Exercise 10
+#include "exercises/10.typ"

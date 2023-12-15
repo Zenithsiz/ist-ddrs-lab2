@@ -8,3 +8,5 @@
 )
 
 #indent_par[For stables values of the system ($ρ < 1.0$), both policies are very comparable. However, when the system becomes unstable ($ρ >= 1.0$), the *JSQ* policy outperforms the random policy.]
+
+#pagebreak()

@@ -15,6 +15,7 @@ default:
   - rule: ex7_a
   - rule: ex7_b
   - rule: ex7_c
+  - rule: ex8_a
 
 rules:
   # Typst
@@ -204,3 +205,15 @@ rules:
     exec:
       - - Rscript
         - code/7c.R
+
+  # Exercise 8.a
+  ex8_a:
+    out:
+      - output/8a.csv
+    deps:
+      - code/util.R
+      - code/8.R
+      - code/8a.R
+    exec:
+      - - Rscript
+        - code/8a.R

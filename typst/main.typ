@@ -70,3 +70,8 @@
 
 === 7. Exercise 7
 #include "exercises/7.typ"
+
+== D. Workloads
+
+=== 8. Exercise 8
+#include "exercises/8.typ"

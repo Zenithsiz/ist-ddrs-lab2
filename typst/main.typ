@@ -75,3 +75,8 @@
 
 === 8. Exercise 8
 #include "exercises/8.typ"
+
+== E. Server farms
+
+=== 9. Exercise 9
+#include "exercises/9.typ"

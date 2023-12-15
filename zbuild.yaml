@@ -18,6 +18,7 @@ default:
   - rule: ex8_a
   - rule: ex8_b
   - rule: ex8_c
+  - rule: ex9
 
 rules:
   # Typst
@@ -241,3 +242,13 @@ rules:
     exec:
       - - Rscript
         - code/8c.R
+
+  # Exercise 9
+  ex9:
+    out:
+      - output/9.svg
+    deps:
+      - code/9.R
+    exec:
+      - - Rscript
+        - code/9.R

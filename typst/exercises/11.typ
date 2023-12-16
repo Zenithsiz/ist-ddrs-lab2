@@ -36,8 +36,4 @@
   ),
 )
 
-#indent_par[We can conclude that for most quantum values, the average packet sizes don't impact the throughput of each queue. Instead the quantum values mostly determine the throughput]
-
-#indent_par[However, for extreme sizes of the quantum, the average packet sizes can influence the throughput on extreme values.]
-
-#indent_par[Overall, we conclude that the ratio between the queue quantums mostly determines the throughput of each queue.]
+#indent_par[In both images we see a (mostly) vertical gradient, implying that the throughput values don't change much across the x axis (average packet sizes). From this, we conclude that the relative quantum values seem to mostly determine the throughput of each queue, regardless of the queue's relative average packet size. This concept starts to breaks down for very low or high relative quantums, but it is still mostly applicable across the whole spectrum we tested.]

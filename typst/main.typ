@@ -89,3 +89,6 @@
 
 === 11. Exercise 11
 #include "exercises/11.typ"
+
+=== 12. Exercise 12
+#include "exercises/12.typ"

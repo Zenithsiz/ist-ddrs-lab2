@@ -257,8 +257,12 @@ rules:
   # Exercise 11
   ex11:
     out:
-      - output/11_1.svg
-      - output/11_2.svg
+      - output/11_1_1.svg
+      - output/11_1_2.svg
+      - output/11_1_3.svg
+      - output/11_2_1.svg
+      - output/11_2_2.svg
+      - output/11_2_3.svg
     deps:
       - code/11.R
     exec:

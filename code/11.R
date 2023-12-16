@@ -66,7 +66,7 @@ calc_throughput <- function(arrival_rates, link_capacity, avg_packet_sizes, queu
   state$served_queue <- NULL
 
   # Simulation loop
-  state$max_completed <- 500
+  state$max_completed <- 2000
   while (state$num_sys_completed < state$max_completed) {
     # Get next event type
     next_event_type <- which.min(state$event_list)
@@ -135,10 +135,16 @@ calc_throughput <- function(arrival_rates, link_capacity, avg_packet_sizes, queu
   lapply(state$accum_bits, \(bits) bits / state$time)
 }
 
-values <- seq(1 / 8, 7 / 8, by = 1 / 8)
+values <- seq(1 / 8, 7 / 8, by = 1 / 64)
 params_all <- sapply(values, \(avg_packet_size_ratio) {
-  lapply(values, \(quantum_ratio) {
-    list(avg_packet_size_ratio = avg_packet_size_ratio, quantum_ratio = quantum_ratio)
+  sapply(values, \(quantum_ratio) {
+    lapply(c(1 / 4, 2 / 4, 3 / 4), \(arrival_rate_ratio) {
+      list(
+        arrival_rate_ratio = arrival_rate_ratio,
+        avg_packet_size_ratio = avg_packet_size_ratio,
+        quantum_ratio = quantum_ratio
+      )
+    })
   })
 })
 
@@ -146,7 +152,10 @@ set.seed(0)
 data <- lapply(params_all, \(params) {
   str(params)
 
-  arrival_rates <- c(1, 1)
+  arrival_rates <- c(
+    params$arrival_rate_ratio * 3,
+    (1 - params$arrival_rate_ratio) * 3
+  )
   link_capacity <- 1000
   avg_packet_sizes <- c(
     params$avg_packet_size_ratio * 4000,
@@ -159,17 +168,18 @@ data <- lapply(params_all, \(params) {
 
   throughputs <- calc_throughput(arrival_rates, link_capacity, avg_packet_sizes, queues_quantum)
   data.frame(
+    arrival_rate_ratio = params$arrival_rate_ratio,
     avg_packet_sizes1 = avg_packet_sizes[[1]],
-    avg_packet_sizes2 = avg_packet_sizes[[2]],
     queues_quantum1 = queues_quantum[[1]],
-    queues_quantum2 = queues_quantum[[2]],
     throughput1 = signif(throughputs[[1]], 4),
     throughput2 = signif(throughputs[[2]], 4)
   )
 })
 data <- do.call(rbind, data)
 
-create_plot <- function(throughput, throughput_title) {
+create_plot <- function(arrival_rate_ratio, throughput, throughput_title) {
+  data <- data[data$arrival_rate_ratio == arrival_rate_ratio, ]
+
   ggplot(data, aes(.data$avg_packet_sizes1, .data$queues_quantum1)) +
     geom_raster(aes(fill = .data[[throughput]])) +
     scale_x_continuous(
@@ -190,8 +200,15 @@ create_plot <- function(throughput, throughput_title) {
     ylab("Quantum size %")
 }
 
-plot1 <- create_plot("throughput1", "Throughput (1)")
-ggsave(plot1, file = "output/11_1.svg", device = "svg")
-
-plot2 <- create_plot("throughput2", "Throughput (2)")
-ggsave(plot2, file = "output/11_2.svg", device = "svg")
+plot <- create_plot(1 / 4, "throughput1", "Throughput (1)")
+ggsave(plot, file = "output/11_1_1.svg", device = "svg")
+plot <- create_plot(2 / 4, "throughput1", "Throughput (1)")
+ggsave(plot, file = "output/11_1_2.svg", device = "svg")
+plot <- create_plot(3 / 4, "throughput1", "Throughput (1)")
+ggsave(plot, file = "output/11_1_3.svg", device = "svg")
+plot <- create_plot(1 / 4, "throughput2", "Throughput (2)")
+ggsave(plot, file = "output/11_2_1.svg", device = "svg")
+plot <- create_plot(2 / 4, "throughput2", "Throughput (2)")
+ggsave(plot, file = "output/11_2_2.svg", device = "svg")
+plot <- create_plot(3 / 4, "throughput2", "Throughput (2)")
+ggsave(plot, file = "output/11_2_3.svg", device = "svg")

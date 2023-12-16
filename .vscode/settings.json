@@ -20,6 +20,8 @@
     "linetype",
     "logseq",
     "maxs",
+    "ncol",
+    "nrow",
     "packetsize",
     "pktnet",
     "pnet",

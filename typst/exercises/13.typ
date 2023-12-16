@@ -1,7 +1,7 @@
 #import "@preview/tablex:0.0.6": tablex, rowspanx, colspanx
 #import "/typst/util.typ" as util: indent_par, code_figure
 
-#indent_par[The following code 10 is our implementation of the kleinrock approximation. It takes the link capacities, flows and packet size similarly to the `pnet` simulator.]
+#indent_par[The following code 10 is our implementation of the Kleinrock approximation. It takes the link capacities, flows and packet size similarly to the `pnet` simulator.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/kleinrock.R"), lang: "R", block: true)),

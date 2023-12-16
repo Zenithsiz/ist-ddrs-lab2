@@ -100,3 +100,6 @@
 
 === 14. Exercise 14
 #include "exercises/14.typ"
+
+=== 15. Exercise 15
+#include "exercises/15.typ"

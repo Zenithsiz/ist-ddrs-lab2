@@ -1,7 +1,7 @@
 #import "@preview/tablex:0.0.6": tablex, rowspanx, colspanx
 #import "/typst/util.typ" as util: indent_par, code_figure
 
-#indent_par[We used our previously developed kleinrock simulator and the `pnet` simulator, running it 10 times and calculating 95% confidence intervals, acquiring the following results in table 18:]
+#indent_par[We used our previously developed Kleinrock script and the `pnet` simulator, running it 10 times and calculating 95% confidence intervals, acquiring the following results in table 18:]
 
 #figure(
 	pad(1em, tablex(
@@ -41,6 +41,6 @@
 	caption: [Results]
 )
 
-#indent_par[Although the kleinrock approximation never enters the confidence intervals obtained from the `pnet` simulator, for lower values of $ρ$, it is close to the confidence intervals. However for larger values of $ρ$, it starts to drift apart very noticeably.]
+#indent_par[Although the Kleinrock approximation never enters the confidence intervals obtained from the `pnet` simulator, for lower values of $ρ$, it is close to the confidence intervals. However for larger values of $ρ$, it starts to drift apart very noticeably.]
 
 #pagebreak()

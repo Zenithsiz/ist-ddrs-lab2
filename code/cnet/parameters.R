@@ -26,5 +26,5 @@ parameters <- function() {
   )
 
   # Definition of the simulation end time, function of the minimum arrival rate
-  endTime <<- 10000 * (1 / 2.5)
+  endTime <<- 10000 * (1 / 0.5)
 }

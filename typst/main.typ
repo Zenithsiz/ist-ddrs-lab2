@@ -103,3 +103,8 @@
 
 === 15. Exercise 15
 #include "exercises/15.typ"
+
+== H. Circuit switched networks
+
+=== 16. Exercise 16
+#include "exercises/16.typ"

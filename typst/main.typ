@@ -27,6 +27,7 @@
   delim: "[",
 
 )
+#show figure: set block(breakable: true)
 #show link: underline
 
 #include "cover.typ"
@@ -83,3 +84,8 @@
 
 === 10. Exercise 10
 #include "exercises/10.typ"
+
+== F. Packet scheduling
+
+=== 11. Exercise 11
+#include "exercises/11.typ"

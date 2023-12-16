@@ -35,3 +35,5 @@
 #indent_par[This algorithm is very closely related to the least connections / least time algorithms. However, instead of selecting the server with the lowest overall connections (or time), it will instead choose two random servers and check the lowest among them.]
 
 #indent_par[This can be good when the operation of checking a server's least connections (or time) is more expensive than just giving them another packet, or when there are many servers, and the time it takes to ask them all for their least connections (or time) is comparable to the time it takes to process the packet.]
+
+#pagebreak()

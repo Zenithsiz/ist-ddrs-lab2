@@ -21,7 +21,7 @@ for (𝜌 in 𝜌_all) {
   )
 
   kleinrock <- approx_kleinrock(LinkCapacities, Flows, packet_size)
-  cat(sprintf("Kleinrock average: %.5f\n", kleinrock$total_wait))
+  cat(sprintf("Kleinrock average: %.5f\n", kleinrock$avg_packet_delay_network))
 
   min_rate <- min(sapply(Flows, function(flow) flow$rate))
   endTime <- 10000 * (1 / min_rate)

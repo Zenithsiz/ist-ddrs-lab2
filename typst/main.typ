@@ -92,3 +92,8 @@
 
 === 12. Exercise 12
 #include "exercises/12.typ"
+
+== G. Packet switched networks
+
+=== 13. Exercise 13
+#include "exercises/13.typ"

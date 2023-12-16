@@ -15,6 +15,5 @@ flows <<- list(
   list(rate = 5 * k, route = c(3))
 )
 
-throughput <- approx_kleinrock(link_capacities, flows, packet_size)
-
-str(throughput)
+approx <- approx_kleinrock(link_capacities, flows, packet_size)
+str(approx)

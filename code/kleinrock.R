@@ -1,31 +1,36 @@
 # Calculates the throughput of a network using the kleinrock approximation
 approx_kleinrock <- function(link_capacities, flows, packet_size) {
-  # (Bits / s)
-  λ_total <- 0
-  λ <- replicate(length(link_capacities), 0)
+  # Calculate the arrival rates per link and for the whole network
+  # (bits / s)
+  λ_network <- 0
+  λ_per_link <- replicate(length(link_capacities), 0)
   for (flow in flows) {
-    λ_total <- λ_total + flow$rate
-    for (node_idx in flow$route) {
-      λ[node_idx] <- λ[node_idx] + flow$rate
+    λ_network <- λ_network + flow$rate
+    for (link_idx in flow$route) {
+      λ_per_link[link_idx] <- λ_per_link[link_idx] + flow$rate
     }
   }
 
-  # (Packets / s)
-  μ <- link_capacities / packet_size
+  # Then calculate the service rates
+  # (packets / s)
+  μ_per_link <- link_capacities / packet_size
 
-  # (Packets)
-  l <- λ / (μ - λ)
-  l_sum <- sum(l)
+  # Then the average packets per link and in the network
+  # (packets)
+  avg_packets_per_link <- λ_per_link / (μ_per_link - λ_per_link)
+  avg_packets_network <- sum(avg_packets_per_link)
 
-  total_wait <- l_sum / sum(λ_total)
-  waits_flows <- 1 / (μ - λ)
-  waits <- sapply(flows, function(flow) {
-    sum(sapply(flow$route, function(node_idx) waits_flows[node_idx]))
+  # And finally the average packet delay per link, then flow and in the network
+  # (seconds)
+  avg_packet_delay_network <- sum(avg_packets_per_link) / λ_network
+  avg_packet_delay_per_link <- 1 / (μ_per_link - λ_per_link)
+  avg_packet_delay_per_flow <- lapply(flows, function(flow) {
+    sum(sapply(flow$route, function(link_idx) avg_packet_delay_per_link[link_idx]))
   })
 
   list(
-    waits = waits,
-    total_wait = total_wait,
-    l_sum = l_sum
+    avg_packet_delay_per_flow = avg_packet_delay_per_flow,
+    avg_packet_delay_network = avg_packet_delay_network,
+    avg_packets_network = avg_packets_network
   )
 }

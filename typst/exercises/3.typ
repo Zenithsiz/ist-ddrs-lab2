@@ -1,4 +1,4 @@
-#import "/typst/util.typ" as util: indent_par
+#import "/typst/util.typ" as util: indent_par, code_figure
 
 ==== a.
 
@@ -28,18 +28,44 @@
 
 ==== b.
 
-#grid(
-  columns: (1fr, 1fr),
-  figure(
-    image("/output/3b-aloha10.svg", width: 80%),
-    caption: [Simulated performance of slotted ALOHA (N = 10)]
-  ),
-  figure(
-    image("/output/3b-aloha25.svg", width: 80%),
-    caption: [Simulated Performance of slotted ALOHA (N = 25)]
-  ),
+#indent_par[We developed the following script in code 2 to simulate slotted ALOHA.]
+
+#code_figure(
+  text(size: 0.8em, raw(read("/code/3b.R"), lang: "R", block: true)),
+  caption: "Developed code",
 )
 
+#pagebreak()
+
+#indent_par[After running the developed script, we obtained the following results, presented in figures 9 and 10:]
+
+#grid(
+  columns: (1fr, 1fr),
+  pad(1em, figure(
+    image("/output/3b-aloha10.svg", width: 100%),
+    caption: [Simulated performance of slotted ALOHA (N = 10)]
+  )),
+  pad(1em, figure(
+    image("/output/3b-aloha25.svg", width: 100%),
+    caption: [Simulated Performance of slotted ALOHA (N = 25)]
+  )),
+)
+
+#indent_par[As we use the same scale for both the theoretical graphs (Figures 7 and 8) and simulated graphs (Figures 9 and 10, respectively), we can compare them side by side to get an idea of whether or not they are similar. By performing this comparison, we reach the conclusion that all graphs are very similar, with the exception of the graph with $N = 25$ and $p = 0.3$, which has the drop-off occur a fair bit later, and is quite noisy compared to the others.]
+
 ==== c.
+
+#indent_par[The slotted ALOHA system has each user have a certain state, _THINKING_ or _BACKLOGGED_, and depending on the state, they have a certain probability of sending their message. When successfully sending it, they set themselves as _THINKING_, otherwise if two or more users sent a packet in the same time slot, they both return to _BACKLOGGED_.]
+
+#indent_par[On the other hand, the CSMA system works by having each user sense if the line is idle or busy. If it's busy, they wait until sensing it idle, then they send their packet fully.]
+
+#indent_par[Adding onto CSMA, CSMA/CD has each user check for collisions during transmission, backing off for a random period if a collision occurs.]
+
+#indent_par[Examples of technologies that use these systems are:]
+
+- ALOHA: RFID tags.
+- CSMA/CD: Ethernet protocol.
+
+#indent_par[Given that CSMA is easily outperformed by CSMA/CD, without adding much complexity, we could not find any relevant technologies that used it.]
 
 #pagebreak()

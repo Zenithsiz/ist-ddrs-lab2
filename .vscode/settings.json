@@ -15,6 +15,8 @@
     "DTMC",
     "ggplot",
     "ggsave",
+    "kbit",
+    "kbits",
     "Khinchine",
     "kleinrock",
     "linebreak",
@@ -45,5 +47,11 @@
     "ylim",
     "ymax",
     "ymin"
+  ],
+  "grammarly.selectors": [
+    {
+      "language": "typst",
+      "scheme": "file"
+    }
   ]
 }

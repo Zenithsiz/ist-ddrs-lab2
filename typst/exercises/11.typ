@@ -4,10 +4,10 @@
 
 - Added a `queues_quantum` vector to hold the quantum of each queue
 - Added a `queues_credit` vector to hold the current credits of each queue.
-- Whenever a queue becomes empty, we reset it's credits to 0.
-- When receiving a departure event, if all servers are full, we check if any of the left queues still has enough credits for the next packet, and if so, we serve it. Otherwise, we give all queues credits based on their quantum and find the first queue that can serve the next packet. If none are able to, we give them credits again and keep repeating until there is a suitable queue.
+- Whenever a queue becomes empty, we reset its credits to 0.
+- When receiving a departure event, if all servers are full, we check if any of the queues left in the cycle still have enough credits for the next packet, and if so, we serve it. Otherwise, we give all queues credits based on their quantum and find the first queue that can serve the next packet. If none are able to, we give them credits again and keep repeating until there is a suitable queue.
 
-#indent_par[The following code 9 is our implementation:]
+#indent_par[The following code 10 is our implementation:]
 
 #code_figure(
   columns(1, text(size: 0.7em, raw(read("/code/11.R"), lang: "R", block: true))),
@@ -16,7 +16,7 @@
 
 #pagebreak()
 
-#indent_par[We've chosen to simulate several scenarios in which:]
+#indent_par[We've chosen to simulate several scenarios with the following values:]
 
 - Arrival rates: $0.75$, $1.50$ and $2.25$.
 - Link capacity: $1000 "bits" dot s^(-1)$
@@ -53,7 +53,7 @@
   )),
 )
 
-#indent_par[In all images we see a (mostly) vertical gradient, implying that the throughput values don't change much across the x axis (average packet sizes). From this, we conclude that the relative quantum values seem to mostly determine the throughput of each queue, regardless of the queue's relative average packet size.]
+#indent_par[In all images we see a (mostly) vertical gradient, implying that the throughput values don't change much across the x-axis (average packet sizes). From this, we conclude that the relative quantum values seem to mostly determine the throughput of each queue, regardless of the queue's relative average packet size.]
 
 #indent_par[When the arrival rates are different, the vertical gradient starts to break at the extremes. However, outside of these parts, the pattern still fits extremely well.]
 

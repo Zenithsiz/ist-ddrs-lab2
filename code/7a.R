@@ -1,7 +1,7 @@
 source("code/7.R")
 source("code/ppl/ppl.R")
 
-arrival_rates1 <- c(60, 80)
+arrival_rates1 <- c(20, 80)
 
 set.seed(0)
 data <- lapply(arrival_rates1, function(arrival_rate1) {

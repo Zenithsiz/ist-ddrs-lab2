@@ -10,7 +10,7 @@
 
 ==== a.
 
-#indent_par[Our first approach consisted of a simple approach using the smallest number of links per flow, and then increasing the link capacities one by one until we achieved the desired blocking probability. We have detailed it in the following tables 25 and 26, and the results in table 27:]
+#indent_par[Our first approach consisted of a simple approach using the smallest number of links per flow, and then increasing the link capacities by one until we achieved the desired blocking probabilities. We have detailed it in the following tables 25 and 26, and the results in table 27:]
 
 #figure(
 	pad(1em, tablex(
@@ -66,7 +66,7 @@
 
 #pagebreak()
 
-#indent_par[In our second approach, we determined that having the 3rd flow not share the circuits of the 1st and 2nd flows was desireable, especially since the links $1 -> 4$ and $4 -> 3$ are the cheapest, at only $100€$ per circuit. Again, we started from 0 circuits in each link, and increased them until we had the desired blocking percentages. We've detailed the approach in tables 28 and 29, and the results in table 30.]
+#indent_par[In our second approach, we determined that having the 3rd flow not share the circuits of the 1st and 2nd flows was desireable, especially since the links $1 -> 4$ and $4 -> 3$ are the cheapest, at only $100€$ per circuit. Again, we started from 0 circuits in each link and increased them until we had the desired blocking percentages. We've detailed the approach in tables 28 and 29, and the results in table 30.]
 
 #figure(
 	pad(1em, tablex(
@@ -122,7 +122,7 @@
 
 #pagebreak()
 
-#indent_par[In our third and final approach, we determined that the link $1 -> 2$ was very expensive, and considered whether it'd be worth to instead use the links $1 -> 4$, $4 -> 3$ and $3 -> 2$ instead. We briefly considered $1 -> 4$ and $4 -> 2$, but this link is very expensive and not used by any other flow, so it was likely not worth it. Again, we started from 0 circuits in each link, and increased them until we had the desired blocking percentages. We've detailed the approach in tables 31 and 32, and the results in table 33.]
+#indent_par[In our third and final approach, we determined that the link $1 -> 2$ was very expensive, and considered whether it'd be worth to instead use the links $1 -> 4$, $4 -> 3$ and $3 -> 2$ instead. We briefly considered $1 -> 4$ and $4 -> 2$, but this link is very expensive and not used by any other flow, so it was likely not worth it. Again, we started from 0 circuits in each link and increased them until we had the desired blocking percentages. We've detailed the approach in tables 31 and 32, and the results in table 33.]
 
 #figure(
 	pad(1em, tablex(
@@ -242,4 +242,4 @@ endTime <<- 10000 * (1 / 0.5)
 	caption: [Results]
 )
 
-#indent_par[From the results, we see that the results are higher than the `cnet` simulated results. This is to be expected, since the product bound is an estimate of the upper bound of the expected results. Since both the number of links our flows cross and our blocking probabilities are small, the product bound still produces a similar result to the simulation.]
+#indent_par[From the results, we see that the results are higher than the `cnet` simulated results. This is to be expected since the product bound is an estimate of the upper bound of the expected results. Since both the number of links our flows cross and our blocking probabilities are small, the product bound still produces a similar result to the simulation.]

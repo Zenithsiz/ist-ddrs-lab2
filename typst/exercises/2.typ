@@ -19,10 +19,12 @@
   caption: "Data traversal"
 )
 
+#pagebreak()
+
 #indent_par[Afterwards, we can divide each row by the number of occurrences in that row to obtain the transition probability matrix. The following code 1 is the code we developed to accomplish this:]
 
 #code_figure(
-  text(size: 0.8em, raw(read("/code/2.R"), lang: "R", block: true)),
+  text(size: 1.0em, raw(read("/code/2.R"), lang: "R", block: true)),
   caption: "Developed code",
 )
 

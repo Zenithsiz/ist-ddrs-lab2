@@ -1,9 +1,9 @@
 #import "/typst/util.typ" as util: indent_par, code_figure
 
-#indent_par[Figure 12 represents the 3-DTMC we'll be using for this exercise.]
+#indent_par[Figure 12, from the guide, represents the 3-DTMC we'll be using for this exercise.]
 
 #figure(
-  image("/images/5-diagram.png", width: 50%),
+  image("/images/5-diagram.png", width: 80%),
 	caption: "3-DTMC"
 )
 
@@ -31,10 +31,10 @@ $
 
 #pagebreak()
 
-#indent_par[We can then model this in R using the following code 2:]
+#indent_par[We can then model this in R using the following code 6:]
 
 #code_figure(
-  text(size: 0.8em, raw(read("/code/5-solve.R"), lang: "R", block: true)),
+  text(size: 1.0em, raw(read("/code/5-solve.R"), lang: "R", block: true)),
   caption: "Code for solving the balance equations",
 )
 
@@ -54,14 +54,14 @@ $
 
 ==== (ii). Simulation using view 1
 
-#indent_par[The following code 4 contains our approach to obtain the limiting state probabilities via simulation implementing the 1st view.]
+#indent_par[The following code 7 contains our approach to obtain the limiting state probabilities via simulation implementing the 1st view.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/5-sim1.R"), lang: "R", block: true)),
   caption: "Code using simulation view 1",
 )
 
-#indent_par[View 1 is similar to how a DTMC works, but before each jump, a state will wait an exponentially distributed amount of time, with rate given by it the transition rate out of it.]
+#indent_par[View 1 is similar to how a DTMC works, but before each jump, a state will wait an exponentially distributed amount of time, with the rate given by it the transition rate out of it.]
 
 #indent_par[After running the code, we ended up with the results in table 7:]
 
@@ -79,7 +79,7 @@ $
 
 ==== (iii). Simulation using view 2
 
-#indent_par[The following code 5 contains our approach to obtain the limiting state probabilities via simulation implementing the 2nd view.]
+#indent_par[The following code 8 contains our approach to obtain the limiting state probabilities via simulation implementing the 2nd view.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/5-sim2.R"), lang: "R", block: true)),
@@ -104,6 +104,6 @@ $
 
 #indent_par[Both of the results obtained in tables 7 and 8 are very close to the theoretical values presented in table 6.]
 
-#indent_par[This is, in part, because we used a high limit for the maximum time of 100000. This limit impacts the accuracy of the results greatly, with low maximum times have limiting state probabilities that are very far from the theoretical values.]
+#indent_par[This is, in part, because we used a high limit for the maximum time of 100000. This limit impacts the accuracy of the results greatly, with low maximum times having limiting state probabilities that are very far from the theoretical values.]
 
 #pagebreak()

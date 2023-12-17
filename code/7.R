@@ -14,7 +14,7 @@ calc_data <- function(sourcetype, arrival_rates, packet_size, priorities) {
   )
   min_arrival_rate <- min(sapply(Flows, function(flow) flow$arrivalrate))
   endTime <<- 10000 * (1 / min_arrival_rate)
-  sim_res <- lapply(1:20, function(run_idx) {
+  sim_res <- lapply(1:10, function(run_idx) {
     cat(sprintf("Run #%d\n", run_idx))
 
     res <- ppl()

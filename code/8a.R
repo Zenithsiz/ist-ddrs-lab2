@@ -3,6 +3,7 @@ source("code/util.R")
 
 stopping_condition <- 10000
 
+set.seed(0)
 mm1_stats <- lapply(1:25, \(...) calc_stats_mm1(0.5, 1, 0.99, 101, 0.01, stopping_condition))
 mm1_avg_delay <- calc_ci(0.95, sapply(mm1_stats, \(stat) stat$avg_delay))
 

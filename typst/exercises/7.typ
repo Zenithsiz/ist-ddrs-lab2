@@ -1,17 +1,18 @@
 #import "@preview/tablex:0.0.6": tablex, rowspanx, colspanx
 #import "/typst/util.typ" as util: indent_par, code_figure
 
+#indent_par[For all calculations and tests, we set the link capacity at $100 "kbit" s^(-1)$ and the average packet size at $800 "bits"$.]
+
 ==== a.
 
 #let solution = csv("/output/7a.csv", delimiter: "\t")
 
-#indent_par[We first calculated all theoretical values and arrived at the following, in table 10:]
+#indent_par[We first calculated all theoretical values and arrived at the following results, in table 9:]
 
 #figure(
 	pad(1em, tablex(
 		columns: (auto, auto, 1.5fr, 2fr, 2fr),
 		align: center + horizon,
-
 
 		rowspanx(2)[ $λ$ ],
 		rowspanx(2)[ $μ$ ],
@@ -35,13 +36,12 @@
 	caption: [Theoretical calculations]
 )
 
-#indent_par[Finally, for each value, we ran the simulator 20 times, and obtained the following confidence intervals, in table 11:]
+#indent_par[Finally, for each value, we ran the simulator 10 times, and obtained the following results, with 95% confidence intervals, in table 10:]
 
 #figure(
 	pad(1em, tablex(
 		columns: (auto, auto, 1fr, 1fr, 1fr, 1fr),
 		align: center + horizon,
-
 
 		rowspanx(2)[ $λ$ ],
 		rowspanx(2)[ $μ$ ],
@@ -72,15 +72,13 @@
 
 #indent_par[However, for $λ = #solution.at(2).at(0)$, although the results still line up with the throughput, the average delay has a much bigger confidence interval, despite the mean still being spot-on.]
 
-#pagebreak()
-
 ==== b.
 
 #let solution = csv("/output/7b.csv", delimiter: "\t")
 
 #indent_par[The values chosen for $𝜆$ and $𝜇$ are the same as in the previous exercise, to enable us to compare the results:]
 
-#indent_par[The following table 12 are the updated theoretical results:]
+#indent_par[The following table 11 are the updated theoretical results:]
 
 #figure(
 	pad(1em, tablex(
@@ -110,7 +108,9 @@
 	caption: [Theoretical calculations]
 )
 
-#indent_par[Finally, just like in the previous exercise, for each value, we ran the simulator 20 times, and obtained the following confidence intervals, in table 13:]
+#pagebreak()
+
+#indent_par[Finally, just like in the previous exercise, for each value, we ran the simulator 10 times, and obtained the results, with 95% confidence intervals, in table 12:]
 
 #figure(
 	pad(1em, tablex(
@@ -143,19 +143,15 @@
 	caption: [Simulation results]
 )
 
-#indent_par[Similarly to the previous exercise, for $λ = #solution.at(1).at(0)$, the values line up quite well, but for $λ = #solution.at(2).at(0)$, we see some deviation on the average delay. In this case the deviation is so strong the confidence intervals don't even include the theoretical value.]
+#indent_par[Similarly to the previous exercise, for $λ = #solution.at(1).at(0)$, the values line up quite well, but for $λ = #solution.at(2).at(0)$, we see some large deviations in the average delay. In this case, the mean is no longer spot-on with the theoretical values.]
 
-#indent_par[When comparing this approach, using fixed packet sizes, against the previous, with exponentially distributed packet size, we see that the average delays are much smaller. This implies that, despite the mean being the same, the net negative effect of the larger packets outweighs the positive effect of the smaller packets that the exponential distribution yields.]
-
-#pagebreak()
+#indent_par[When comparing this approach, using fixed packet sizes, against the previous, with exponentially distributed packet sizes, we see that the average delays are smaller. This implies that, despite the mean being the same, the net negative effect of the larger packets outweighs the positive effect of the smaller packets that the exponential distribution yields.]
 
 ==== c.
 
 #let solution = csv("/output/7c.csv", delimiter: "\t")
 
-#indent_par[]
-
-#indent_par[The following table 14 are the updated theoretical results:]
+#indent_par[The following table 13 are the updated theoretical results:]
 
 #figure(
 	pad(1em, tablex(
@@ -185,13 +181,12 @@
 	caption: [Theoretical calculations]
 )
 
-#indent_par[Finally, just like in the previous 2 exercises, for each value, we ran the simulator 20 times, and obtained the following confidence intervals, in table 15:]
+#indent_par[Finally, just like in the previous 2 exercises, for each value, we ran the simulator 10 times, and obtained the following results, with 95% confidence intervals, in table 14:]
 
 #figure(
 	pad(1em, tablex(
 		columns: (auto, auto, auto, 1fr, 1fr, 1fr, 1fr),
 		align: center + horizon,
-
 
 		rowspanx(2)[ $λ_1$ ],
 		rowspanx(2)[ $λ_2$ ],
@@ -214,6 +209,6 @@
 	caption: [Simulation results]
 )
 
-// TODO: Compare with a. and b.
+#indent_par[Comparing the simulated results with the theoretical, we see that the values of the latter are included in the confidence intervals of the former.]
 
 #pagebreak()

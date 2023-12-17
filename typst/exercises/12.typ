@@ -16,7 +16,7 @@
 
 ==== c. Scheduling
 
-#indent_par[Scheduling, also called dequeuing, is the third step in the Qos chain. After entering it's assigned queue, a packet will be scheduled for processing. This procedure will employ a policy that will determine when each packet will be served.]
+#indent_par[Scheduling, also called dequeuing, is the third step in the Qos chain. After entering its assigned queue, a packet will be scheduled for processing. This procedure will employ a policy that will determine when each packet will be served.]
 
 #indent_par[In detail, the 7x50 _Nokia_ routers use a policy of strict priority, with two different levels of priorities. However, there can be multiple queues with the same priority. In this case, once a packet is assigned a priority, it will be distributed according to a round-robin policy to the respective queues.]
 

@@ -2,21 +2,21 @@
 
 ==== a.
 
-#indent_par[The following figures 7 and 8 show the throughput of slotted ALOHA for various values of $N$, $p$ and $σ$ on the same scale.]
+#indent_par[The following figures 7 and 8 show the throughput of slotted ALOHA for various values of $N$, $p$ and $σ$, on the same scale.]
 
 #grid(
   columns: (1fr, 1fr),
-  figure(
-    image("/output/3a-aloha10.svg", width: 80%),
+  pad(1em, figure(
+    image("/output/3a-aloha10.svg", width: 100%),
     caption: [Theoretical performance of slotted ALOHA (N = 10)]
-  ),
-  figure(
-    image("/output/3a-aloha25.svg", width: 80%),
+  )),
+  pad(1em, figure(
+    image("/output/3a-aloha25.svg", width: 100%),
     caption: [Theoretical performance of slotted ALOHA (N = 25)]
-  ),
+  )),
 )
 
-#indent_par[For small values of $σ$, most users are stuck in the thinking state, without sending packets, while for larger values of $σ$, most users are simultaneously attempting to send packets, thus increasing the probability of a collision. In both cases, the throughput is low, regardless of the values of $p$]
+#indent_par[For small values of $σ$, most users are stuck in the thinking state, without sending packets, while for larger values of $σ$, most users are simultaneously attempting to send packets, thus increasing the probability of a collision. In both cases, the throughput is low, regardless of the values of $p$.]
 
 #indent_par[For values of $σ$ between 0.01 and 0.1, we see a sharp increase in throughput, given that this is a "sweet spot", where users will try to transmit more often, but not as often as to collide. However, in this range, the throughput depends sharply on the values of $N$ and $p$.]
 
@@ -28,7 +28,7 @@
 
 ==== b.
 
-#indent_par[We developed the following script in code 2 to simulate slotted ALOHA.]
+#indent_par[We developed the following script in code 2 to simulate slotted ALOHA:]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/3b.R"), lang: "R", block: true)),
@@ -51,7 +51,7 @@
   )),
 )
 
-#indent_par[As we use the same scale for both the theoretical graphs (Figures 7 and 8) and simulated graphs (Figures 9 and 10, respectively), we can compare them side by side to get an idea of whether or not they are similar. By performing this comparison, we reach the conclusion that all graphs are very similar, with the exception of the graph with $N = 25$ and $p = 0.3$, which has the drop-off occur a fair bit later, and is quite noisy compared to the others.]
+#indent_par[As we use the same scale for both the theoretical graphs (Figures 7 and 8) and simulated graphs (Figures 9 and 10, respectively), we can compare them side by side to get an idea of whether or not they are similar. By performing this comparison, we conclude that all graphs are very similar, except for the graph with $N = 25$ and $p = 0.3$, which has the drop-off occur a fair bit later, and is quite noisy compared to the others.]
 
 ==== c.
 

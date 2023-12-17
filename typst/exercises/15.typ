@@ -51,9 +51,9 @@
 
 ==== b.
 
-#indent_par[We ran the `pnet` simulator 10 times, calculating 95% confidence intervals, and obtained the results in table 21:]
+#indent_par[We ran the `pnet` simulator 10 times, calculating 95% confidence intervals, and obtained the results in table 21.]
 
-#indent_par[The network average packet delay was calculated from each flow's average delay via the following formula:]
+#indent_par[The network average packet delay was calculated from each flow's average delay via the following formula 16:]
 
 $ W = (sum_i λ_i W_i) / (sum_j λ_j) $
 
@@ -65,7 +65,7 @@ LinkCapacities <- replicate(7, 256 * 1000)
 - ```R
 Flows <- list(
   list(rate = 215, packetsize = packet_size, route = c(1, 3, 6)),
-  list(rate = 64, packetsize = packet_size, route = c(2, 5)),
+  list(rate = 64 , packetsize = packet_size, route = c(2, 5)),
   list(rate = 128, packetsize = packet_size, route = c(2, 5, 7)),
   list(rate = 128, packetsize = packet_size, route = c(4))
 )
@@ -78,7 +78,6 @@ endTime <- 10000 * (1 / 64) # 156.25
 	pad(1em, tablex(
 		columns: (auto, 1fr, 1fr),
 		align: center + horizon,
-
 
 		rowspanx(2)[ Flow ],
 		colspanx(2)[ Average packet delay ($"ms"$) ],
@@ -103,19 +102,21 @@ endTime <- 10000 * (1 / 64) # 156.25
 	caption: [Results]
 )
 
+#indent_par[The results are pretty different from the Kleinrock approximated calculated in 15.a. This is expected, as this is a more complex network than the Kleinrock approximation can handle.]
+
 #pagebreak()
 
 ==== c.
 
-#indent_par[In order to determine the optimal bifurcation path, we first determine that the flow through the link $2 -> 4$ and $2 -> 5$ must be equal. Given that the flow 4 already uses the link $2 -> 5$, we must account for it in the calculations.]
+#indent_par[In order to determine the optimal bifurcation path, we first determine that the flow through the link $2 -> 4$ and $2 -> 5$ must be equal. Given that flow 4 already uses the link $2 -> 5$, we must account for it in the calculations.]
 
-#indent_par[With this in mind, we reach the following equation system 17, where $l_24$ is the flow through link $2 -> 4$ and $l_25$ is the flow through link $2 -> 5$]
+#indent_par[With this in mind, we reach the following system of equations in equation 17, where $l_"xy"$ is the flow through link $x -> y$.]
 
 $ cases( l_24 + l_25 = 215, l_24 = l_25 + 128 ) $
 
-#indent_par[Solving these, we reach $l_24 = 171.5$ and $l_25 = 43.5$]
+#indent_par[Solving these, we reach $l_24 = 171.5$ and $l_25 = 43.5$.]
 
-#indent_par[In order to compare against our results in exercise 15.a, we used the Kleinrock script and got the following results in table 22.]
+#indent_par[To compare with our results in exercise 15.a, we used the Kleinrock script again and got the following results in table 22.]
 
 #figure(
 	pad(1em, tablex(
@@ -152,7 +153,7 @@ $ cases( l_24 + l_25 = 215, l_24 = l_25 + 128 ) $
 	caption: [Results]
 )
 
-#indent_par[We can be sure that we have obtained the optimal bifurcation, because the average packet delay for each bifurcated flow has the same value. We also see that flow 2 was not affected at all, since flow 1 does not cross it on any of it's path or bifurcations. However, flow 3 and flow 4 have both been slightly affected due to the 2nd bifurcation of flow 1 passing through them. This is to be expected, as we are pushing more packets through the same links. Overall, the network average packet delay is lower, despite the increases to flow 3 and 4, due to flow 1 now having much lower delays.]
+#indent_par[We can be sure that we have obtained the optimal bifurcation because the average packet delay for each bifurcated flow has the same value. We also see that flow 2 was not affected at all, since flow 1 does not cross it on any of its paths or bifurcations. However, flow 3 and flow 4 have both been slightly affected due to the 2nd bifurcation of flow 1 passing through them. This is to be expected, as we are pushing more packets through the same links. Overall, the network average packet delay is lower, despite the increases to flow 3 and 4, due to flow 1 now having much lower delays.]
 
 #pagebreak()
 
@@ -237,4 +238,4 @@ Flows <<- matrix(
 	caption: [Results]
 )
 
-#indent_par[Comparing with our previous attempt at bifurcation in exercise 15.c, we see an small overall improvement to the network average packet delay. The gradient projection algorithm discovered 2 new flows we hadn't used, namely $1 -> 3 -> 5 -> 6$ and $1 -> 2 -> 5$. Despite outputting the flow $1 -> 2 -> 5 -> 6$, it has no rate, so we did not include it in the kleinrock script.]
+#indent_par[Comparing with our previous attempt at the bifurcation in exercise 15.c, we see a small overall improvement to the network average packet delay. The gradient projection algorithm discovered 2 new flows we hadn't used, namely $1 -> 3 -> 5 -> 6$ and $1 -> 2 -> 5$. Despite outputting the flow $1 -> 2 -> 5 -> 6$, it has no rate, so we did not include it in the Kleinrock script.]

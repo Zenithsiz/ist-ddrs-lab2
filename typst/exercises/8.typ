@@ -56,7 +56,7 @@
 
 #let results_b = csv("/output/8b.csv", delimiter: "\t")
 
-#indent_par[The following code 8 contains out approach to calculate the variance. The functions `calc_stats_mm1` and `calc_stats_mg1` simulate the corresponding systems and return a list where `$avg_delay` contains the simulated average delay.]
+#indent_par[The following code 9 contains our approach to calculate the variance. The functions `calc_stats_mm1` and `calc_stats_mg1` simulate the corresponding systems and return a list where `$avg_delay` contains the simulated average delay.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/8b-report.R"), lang: "R", block: true)),
@@ -100,9 +100,7 @@
 
 #indent_par[We've included the workload variability from the previous exercise as the column $C^2$ to compare against. We can thus conclude that the variance and variability are correlated.]
 
-#indent_par[This makes sense, as despite our _elephants_ occurring less often, their larger size ensures that the users that come after them have a much higher average queue delay, which in turn increases the variance of the system.]
-
-#pagebreak()
+#indent_par[This makes sense, as, despite our _elephants_ occurring less often, their larger size ensures that the users that come after them have a much higher average queue delay, which in turn increases the variance of the system.]
 
 ==== c.
 
@@ -110,7 +108,7 @@
 
 #indent_par[In our current implementation, we treat both the _elephants_ and _mice_ the same. _Elephants_ will always have a large size and thus need more time in queue, but this shouldn't affect the _mice_ that can be dispatched quickly.]
 
-#indent_par[To remedy this, we can treat both categories of users differently, by performing *packet scheduling*. In specific, we can use a *strict priority* with _mice_ having a higher priority than the _elephants_. This leads to a higher average delay for the _elephants_, but with the tradeoff of the _mice_ having much lower average delay.]
+#indent_par[To remedy this, we can treat both categories of users differently, by performing *packet scheduling*. In specific, we can use a *strict priority* with _mice_ having a higher priority than the _elephants_. This leads to a higher average delay for the _elephants_, but with the tradeoff of the _mice_ having a much lower average delay.]
 
 #indent_par[To be able to calculate exactly whether this tradeoff is valuable, we can use the following formulas 11 through 15 to calculate the average queuing delay for each type of user:]
 
@@ -122,7 +120,7 @@ $ W_"q2" = (λ_1 s_1^2 + λ_2 s_2^2) / (2 (1 - λ_1 s_1) (1 - λ_1 s_1 - λ_2 s_
 
 $ W_q = (λ_1 W_"q1" + λ_2 W_"q2") / (λ_1 + λ_2) $
 
-#indent_par[Where $W_"q1"$ is the average queueing delay of _mice_, $W_"q2"$ is the average queueing delay of _elephants_ and $W_q$ is the total average queueing delay]
+#indent_par[Where $W_"q1"$ is the average queueing delay of _mice_, $W_"q2"$ is the average queueing delay of _elephants_ and $W_q$ is the total average queueing delay.]
 
 #indent_par[With these formulas in hand, we have computed the values in the following table 17:]
 

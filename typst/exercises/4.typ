@@ -3,7 +3,7 @@
 #indent_par[Figure 11 represents the 3-DTMC we'll be using for this exercise.]
 
 #figure(
-  image("/images/4-diagram.png", width: 50%),
+  image("/images/4-diagram.png", width: 70%),
 	caption: "3-DTMC"
 )
 
@@ -30,10 +30,10 @@ $
 
 #pagebreak()
 
-#indent_par[We can then model this in R using the following code 2:]
+#indent_par[We can then model this in R using the following code 3:]
 
 #code_figure(
-  text(size: 0.8em, raw(read("/code/4-solve.R"), lang: "R", block: true)),
+  text(size: 1.0em, raw(read("/code/4-solve.R"), lang: "R", block: true)),
   caption: "Code for solving the balance equations",
 )
 
@@ -53,7 +53,7 @@ $
 
 ==== (ii). Matrix multiplication
 
-#indent_par[The following code 3 contains our approach to obtain the limiting state probabilities via matrix multiplication.]
+#indent_par[The following code 4 contains our approach to obtain the limiting state probabilities via matrix multiplication.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/4-matrix.R"), lang: "R", block: true)),
@@ -80,7 +80,7 @@ $
 
 ==== (iii). Simulation
 
-#indent_par[The following code 4 contains our approach to obtain the limiting state probabilities via simulation.]
+#indent_par[The following code 5 contains our approach to obtain the limiting state probabilities via simulation.]
 
 #code_figure(
   text(size: 0.8em, raw(read("/code/4-sim.R"), lang: "R", block: true)),
@@ -89,9 +89,9 @@ $
 
 #indent_par[We initialize our current state to 1, then for 100000 rounds, save the current state, calculate the next state and save it to the current.]
 
-#indent_par[In order to calculate the next state, we generate a uniformly random number in the $[0.0, 1.0]$ interval, and then choose the first index of the cumulative sum of the probabilities that is higher than the number we generated.]
+#indent_par[To calculate the next state, we generate a uniformly random number in the $[0.0, 1.0]$ interval, and then choose the first index of the cumulative sum of the probabilities that is higher than the number we generated.]
 
-#indent_par[This works because by calculating the cumulative sum of the probabilities, we're calculating it's cumulative density function. Then by definition, finding the input for which this function has value $<= x$, for $x ∈ [0.0, 1.0]$ is equal to sampling the original distribution.]
+#indent_par[This works because by calculating the cumulative sum of the probabilities, we're calculating its cumulative density function. Then by definition, finding the input for which this function has value $<= x$, for $x ∈ [0.0, 1.0]$ is equal to sampling the original distribution.]
 
 #indent_par[Finally, we get the limiting state probabilities by checking how many states there are out of all the ones we've visited for each state. The output of this process can be seen in table 5:]
 
